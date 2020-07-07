@@ -1,0 +1,26 @@
+# bit
+测试C语言代码（计算某年某月某日是星期几）
+#include <iostream>
+#include<math.h>
+using namespace std;
+int main()
+{
+    int n,y,m,d,c,w,t;
+    cin>>t;
+    while(t--)
+    {
+        cin>>y>>m>>d;
+        if(m<=2)
+        {
+            m+=12;
+            y=y-1;
+        }
+        c=y/100;
+        y=y%100;/*新历法公式推导，直接忽略中间空缺的15天*/
+        w=c/4-2*c+y+y/4+13*(m+1)/5+d-1;/*新历法，1582，规定10月4号的下一天为10月15号*/
+        w%=7;
+        if(w<=0) w+=7;
+        cout<<w<<endl;
+    }
+    return 0;
+}
