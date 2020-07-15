@@ -1,0 +1,50 @@
+#include<stdio.h>
+#include<string.h>
+int e[2020][2020],dis[2020],book[2020];
+int main()
+{
+	int T;
+	int n,m,i,j,k,t1,t2,t3,min,max;
+	int count,sum;
+	int inf=99999999;
+	scanf("%d",&T);
+	while(T--)
+	{
+		memset(e,0,sizeof(e));
+		memset(dis,0,sizeof(dis));
+		memset(book,0,sizeof(book));
+		count=sum=max=0;
+		scanf("%d",&n);
+		for(i=1;i<=n;i++)
+			for(j=1;j<=n;j++)
+				scanf("%d",&e[i][j]);
+		for(i=1;i<=n;i++)
+			dis[i]=e[1][i];
+		book[1]=1;
+		count++;
+		while(count<n)
+		{
+			min=inf;
+			for(i=1;i<=n;i++)
+			{
+				if(book[i]==0&&dis[i]<min)
+				{
+					min=dis[i];
+					j=i;
+				}
+			}
+			book[j]=1;
+			count++;
+			if(max<dis[j])
+				max=dis[j];
+			sum=sum+dis[j];
+			for(k=1;k<=n;k++)
+			{
+				if(book[k]==0&&dis[k]>e[j][k])
+					dis[k]=e[j][k];
+			}
+		}
+		printf("%d\n",max);	
+	}
+	return 0;	
+} 
