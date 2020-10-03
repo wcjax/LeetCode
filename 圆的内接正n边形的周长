@@ -1,0 +1,13 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+	double n,r;
+	int m;
+	while(scanf("%d%lf",&m,&r)!=EOF)
+	{
+		n=2*m*r*sin(3.14/m);
+		printf("%.2lf\n",n);
+	}
+	return 0;	
+} 
